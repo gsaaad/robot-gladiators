@@ -71,7 +71,7 @@ var fight = function () {
       //subtract money from playerMoney
       playerMoney -= 2;
     }
-    //if no(false) ask question again by running fight
+    //if no(false) ask question again by running fight function
     else {
       fight();
     }
