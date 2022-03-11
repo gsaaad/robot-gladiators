@@ -14,13 +14,12 @@ if (playerHealth > 0) {
   console.log("You're still alive!");
 }
 if (playerHealth === 0) {
-  console.log("This will not run");
+  console.log("Your bot is dead! add some oil maybe");
 }
 
 //  you can also log multiple values at once
 console.log(playerName, playerAttack, playerHealth);
 
-window.alert("Welcome to Robot Gladiators");
 var fight = function (enemyName) {
   while (playerHealth > 0 && enemyHealth > 0) {
     // ask player if they'd like to fight or run
@@ -80,22 +79,25 @@ var fight = function (enemyName) {
         playerHealth +
         " health remaining."
     );
-
-    // check player's health
-    if (playerHealth <= 0) {
-      window.alert(playerName + " has died!");
-      // leave while() loop if player is dead
-      break;
-    } else {
-      window.alert(playerName + " still has " + playerHealth + " health left.");
-    }
   } // end of while loop
 }; // end of fight function
 
 // fight();
 
 for (var i = 0; i < enemyNames.length; i++) {
-  var pickedEnemy = enemyNames[i];
-  enemyHealth = 50;
-  fight(pickedEnemy);
+  if (playerHealth > 0) {
+    //let player know what round it is [remember! arrays start at index 0. so add]
+    window.alert("Welcome to Robot Gladiators Round " + (i + 1));
+    //pick new enemy to fight based on index
+    var pickedEnemy = enemyNames[i];
+    //reset enemy health before starting a new fight
+    enemyHealth = 50;
+    // use debugger to pause script from running to check out what's going on
+    //debugger;
+    // pass the picked enemy name to
+    fight(pickedEnemy);
+  } else {
+    window.alert("You have lost your robot in battle! Game Over!");
+    break;
+  }
 }
