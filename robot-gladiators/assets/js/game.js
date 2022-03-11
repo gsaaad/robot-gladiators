@@ -4,9 +4,11 @@ var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 //enemy
-var enemyName = "Roborto";
+
 var enemyHealth = 50;
 var enemyAttack = 12;
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
+
 //check to see if the value of playerHealth variable is greater than 0
 if (playerHealth > 0) {
   console.log("You're still alive!");
@@ -18,7 +20,8 @@ if (playerHealth === 0) {
 //  you can also log multiple values at once
 console.log(playerName, playerAttack, playerHealth);
 
-var fight = function () {
+var fight = function (enemyNames) {
+  //fight function statements
   //Alert players that Arena is ready for a fight!
   window.alert("Welcome to Robot Gladiators");
   var promptFight = window.prompt(
@@ -30,23 +33,23 @@ var fight = function () {
     console.log(
       playerName +
         " attacked " +
-        enemyName +
+        enemyNames +
         ". " +
-        enemyName +
+        enemyNames +
         " now has " +
         enemyHealth +
         " health remaining."
     );
     //check enemy's health
     if (enemyHealth <= 0) {
-      window.alert(enermyName + " has died!");
+      window.alert(enermyNames + " has died!");
     } else {
-      window.alert(enemyName + " still has " + enemyHealth + " health left.");
+      window.alert(enemyNames + " still has " + enemyHealth + " health left.");
     }
     //remove player's health by subtracting the amount set in the enemyAttack variable
     playerHealth = playerHealth - enemyAttack;
     console.log(
-      enemyName +
+      enemyNames +
         " attacked " +
         playerName +
         ". " +
@@ -83,4 +86,8 @@ var fight = function () {
   // Log a resulting message to the console so we know that it worked.
 };
 
-fight();
+// fight();
+
+for (var i = 0; i < enemyNames.length; i++) {
+  fight(enemyNames[i]);
+}
