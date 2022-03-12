@@ -2,7 +2,7 @@
 var playerName = window.prompt("What is your robot's Name? ");
 var playerHealth = 100;
 var playerAttack = 10;
-var playerMoney = 10;
+var playerMoney = 20;
 //enemy
 
 var enemyHealth = 50;
@@ -110,6 +110,17 @@ var startGame = function () {
       //debugger;
       // pass the picked enemy name to
       fight(pickedEnemy);
+      //if we're not at the last enemy in the array AND we're not at the last enemy in the array
+      if (i < enemyNames.length - 1 && i < enemyNames.length - 1) {
+        //ask if player wants to use the store before next round
+        var storeConfirm = window.confirm(
+          "The fight is over, Would you like to visit the store before the next round?"
+        );
+        //if yes, take them to the store() function
+        if (storeConfirm) {
+          shop();
+        }
+      }
     } else {
       window.alert("You have lost your robot in battle! Game Over!");
       break;
@@ -135,4 +146,111 @@ var endGame = function () {
     window.alert("Thank you for playing Robot Gladiators! Come back soon");
   }
 };
+var shop = function () {
+  debugger;
+  //ask player what they'd like to do
+  var shopOptionPrompt = window.prompt(
+    "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', 'LEAVE' to make a choice"
+  );
+  //use Switch to carry out action
+  // ? using Switch (and 3 if statements).
+  // ? switch is less code and  more utilized when only 1 variable may be multiple values... SWITCH!
+  switch (shopOptionPrompt) {
+    case "REFILL": //newcase\
+    case "refill":
+      if (playerMoney >= 7) {
+        window.alert("Refilling player's health by 20 for 7 dollars. >:D");
+        //increase health and decrease money
+
+        playerHealth = playerHealth + 20;
+        playerMoney = playerMoney - 7;
+        window.alert(
+          "You can spend $10 more and ROLL a number (0-99) for extra Health!"
+        );
+        var luckyConfirmHealth = window.confirm(
+          "Are you feeling..... Lucky..?"
+        );
+        console.log(luckyConfirmHealth);
+        if (luckyConfirmHealth && playerMoney > 5) {
+          var luckyRollHealth = Math.floor(Math.random() * 100);
+          window.alert(
+            "Your robot gained..... " + luckyRollHealth + " HEALTH Boost!"
+          );
+          console.log(luckyRollHealth);
+          playerHealth += luckyRollHealth;
+          window.alert("Your robot has " + playerHealth + " Total HP");
+          console.log(playerHealth);
+          playerMoney -= 5;
+          console.log(playerMoney);
+          window.alert(
+            "Continue onwards... TO BATTLE! BUZZ BUZZZ BUZZZZ SKT CRK"
+          );
+        } else {
+          window.alert(
+            "Continue onwards... TO BATTLE! BUZZ BUZZZ BUZZZZ SKT CRK"
+          );
+        }
+      } else {
+        window.alert("You don't have enough money!");
+      }
+
+      break;
+    case "UPGRADE":
+    case "upgrade":
+      if (playerMoney >= 7) {
+        window.alert(
+          "Upgrading player's attack by 6, will cost you $7 Dollars. >:D"
+        );
+
+        //increase attack and decrease money
+
+        playerAttack = playerAttack + 6;
+        playerMoney = playerMoney - 7;
+        console.log(playerAttack, playerMoney);
+        window.alert(
+          "You can spend $5 more and ROLL a number (0-9) for extra ATTACK!"
+        );
+        var luckyConfirmAtt = window.confirm("Are you feeling..... Lucky..?");
+        if (luckyConfirmAtt && playerMoney > 5) {
+          var luckyRollAtt = Math.floor(Math.random() * 10);
+          window.alert(
+            "Your robot gained..... " + luckyRollAtt + " Attack Boost!"
+          );
+          console.log(luckyRollAtt);
+          playerAttack += luckyRollAtt;
+          window.alert(
+            "Your robot has " + playerAttack + " total ATTACK POWER"
+          );
+          console.log(playerAttack);
+          playerMoney -= 5;
+          console.log(playerMoney);
+          window.alert(
+            "Continue onwards... TO BATTLE! BUZZ BUZZZ BUZZZZ SKT CRK"
+          );
+        } else {
+          window.alert(
+            "Continue onwards... TO BATTLE! BUZZ BUZZZ BUZZZZ SKT CRK"
+          );
+        }
+      } else {
+        window.alert("You don't have enough money!");
+      }
+
+      break;
+    case "LEAVE":
+    case "leave":
+      window.alert("Leaving the store");
+      window.alert("Continue onwards... TO BATTLE! BUZZ BUZZZ BUZZZZ SKT CRK");
+
+      //do nothing, so function will end
+      break;
+    default:
+      window.alert("You did not pick a valid option. Try again");
+
+      //call shop() again to force player to pick a valid option!
+      shop();
+      break;
+  }
+};
+
 startGame();
